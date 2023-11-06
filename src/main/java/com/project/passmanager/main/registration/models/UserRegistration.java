@@ -5,15 +5,29 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Класс, в котором создается сущность пользователя
+ */
 @Entity
 @Table(name = "my users")
 public class UserRegistration {
     @Id
     @GeneratedValue
+    /** Поле id */
     private Long id;
+    /** Поле имени пользователя */
     private String username;
+    /** Поле пароля */
     private String password;
+    /** Поле статуса пользователя */
     private boolean active;
+
+    /**
+     * Аннотация ElementCollection указывает, что это элемент коллекции класса Role
+     * параметр fetch Eager получает роли сразу при получении пользователя
+     * CollectionTable указывает таблицу, в которой будут сохраняться пользователи
+     * Enumerated указывает, что данные будут сохраняться в виде строки
+     */
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
     @Enumerated(EnumType.STRING)
@@ -21,6 +35,13 @@ public class UserRegistration {
     public UserRegistration()
     {
     }
+
+    /**
+     * Конструктор для получения нового объекта
+     * @param name имя пользователя
+     * @param password пароль пользователя
+     * @param role роль пользователя
+     */
     public UserRegistration(String name, String password, Role role) {
         this.username = name;
         this.password = password;

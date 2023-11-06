@@ -16,11 +16,19 @@ public class RegistrationController {
     public RegistrationController(UserRegistrationService userRegistrationService) {
         this.userRegistrationService = userRegistrationService;
     }
+
+    /**
+     * Метод отправляет шаблон регистрации на клиента, когда обращаемся к регистрации
+     */
     @GetMapping("/registration")
     public String registration()
     {
         return "registration";
     }
+
+    /**
+     * Метод сохранения формы регистрации
+     */
     @PostMapping("/registration")
     public String adduser(UserRegistration userRegistration, Model model)
     {
