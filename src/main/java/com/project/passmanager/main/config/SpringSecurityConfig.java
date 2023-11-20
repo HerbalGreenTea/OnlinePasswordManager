@@ -15,9 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
-    /**
-     * В данном бине реализована доступность путей разным ролям
-     */
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -29,10 +27,7 @@ public class SpringSecurityConfig {
         return http.build();
     }
 
-    /**
-     * PasswordEncoder используется для выполнения одностороннего преобразования пароля с целью безопасного хранения
-     * @return NoOpPasswordEncoder возвращает пароли в виде обычного текста
-     */
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();

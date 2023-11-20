@@ -3,6 +3,7 @@ package com.project.passmanager.main.registration.services;
 import com.project.passmanager.main.registration.models.Role;
 import com.project.passmanager.main.registration.models.UserRegistration;
 import com.project.passmanager.main.registration.repositories.UserRegistrationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 /**
  * Класс реализует интерфейс UserDetailsService (этот интерфейс используется для получения данных пользователя)
  */
-
+@RequiredArgsConstructor
 @Component
 public class UserRegistrationService implements UserDetailsService {
     /**
@@ -28,13 +29,6 @@ public class UserRegistrationService implements UserDetailsService {
      */
     private final UserRegistrationRepository userRegistrationRepository;
 
-    /**
-     * Конструктор создание нового объекта с определенными значениями
-     */
-    @Autowired
-    public UserRegistrationService(UserRegistrationRepository userRegistrationRepository) {
-        this.userRegistrationRepository = userRegistrationRepository;
-    }
 
     /**
      * Загрузка пользователя по его имени
@@ -45,14 +39,20 @@ public class UserRegistrationService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserRegistration myUserRegistration = userRegistrationRepository.findByUsername(username);
-        return new User(myUserRegistration.getUsername(), myUserRegistration.getPassword(), mapRolesToAthorities(myUserRegistration.getRoles()));
+        return new User(
+                myUserRegistration.getUsername(),
+                myUserRegistration.getPassword(),
+                mapRolesToAthorities(myUserRegistration.getRoles()));
     }
 
     /**
      * Метод, преобразующий наши роли к "спринговым" ролям
      */
     private List<? extends GrantedAuthority> mapRolesToAthorities (Set<Role> roles){
-        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+ role.name())).collect(Collectors.toList());
+        return roles
+                .stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_"+ role.name()))
+                .collect(Collectors.toList());
     }
 
     /**

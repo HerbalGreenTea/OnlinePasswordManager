@@ -8,6 +8,7 @@ import java.util.Set;
 /**
  * Класс, в котором создается сущность пользователя
  */
+
 @Entity
 @Table(name = "my users")
 public class UserRegistration {

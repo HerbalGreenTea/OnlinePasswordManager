@@ -2,20 +2,17 @@ package com.project.passmanager.main.registration.controllers;
 
 import com.project.passmanager.main.registration.models.UserRegistration;
 import com.project.passmanager.main.registration.services.UserRegistrationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+@RequiredArgsConstructor
 @Controller
 public class RegistrationController {
     private final UserRegistrationService userRegistrationService;
 
-    @Autowired
-    public RegistrationController(UserRegistrationService userRegistrationService) {
-        this.userRegistrationService = userRegistrationService;
-    }
 
     /**
      * Метод отправляет шаблон регистрации на клиента, когда обращаемся к регистрации
@@ -23,6 +20,7 @@ public class RegistrationController {
     @GetMapping("/registration")
     public String registration()
     {
+        String registration;
         return "registration";
     }
 
