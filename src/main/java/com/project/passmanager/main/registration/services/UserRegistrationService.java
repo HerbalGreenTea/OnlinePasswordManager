@@ -32,6 +32,7 @@ public class UserRegistrationService implements UserDetailsService {
 
     /**
      * Загрузка пользователя по его имени
+     *
      * @param username имя пользователя, идентифицирующее пользователя, данные которого требуются
      * @return возвращает найденного пользователя
      * @throws UsernameNotFoundException ошибка, если пользователь с таким именем не найден
@@ -48,23 +49,22 @@ public class UserRegistrationService implements UserDetailsService {
     /**
      * Метод, преобразующий наши роли к "спринговым" ролям
      */
-    private List<? extends GrantedAuthority> mapRolesToAthorities (Set<Role> roles){
+    private List<? extends GrantedAuthority> mapRolesToAthorities(Set<Role> roles) {
         return roles
                 .stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_"+ role.name()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                 .collect(Collectors.toList());
     }
 
     /**
      * Метод для добавления пользователя в базу данных
+     *
      * @param userRegistration пользователь
      * @throws Exception ошибка, если пользователь с таким именем уже существует в базе данных
      */
-    public void addUser(UserRegistration userRegistration) throws Exception
-    {
+    public void addUser(UserRegistration userRegistration) throws Exception {
         UserRegistration userRegistrationFromDb = userRegistrationRepository.findByUsername(userRegistration.getUsername());
-        if (userRegistrationFromDb != null)
-        {
+        if (userRegistrationFromDb != null) {
             throw new Exception("userRegistration exist");
         }
         userRegistration.setRoles(Collections.singleton(Role.USER));

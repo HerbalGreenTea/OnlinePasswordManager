@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRegistrationRepository extends CrudRepository<UserRegistration, Long> {
     /**
      * Метод, получающий пользователя по имени
+     *
      * @param username - имя пользователя
      */
     UserRegistration findByUsername(String username);
