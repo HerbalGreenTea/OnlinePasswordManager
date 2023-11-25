@@ -23,7 +23,7 @@ public class SecretSpaceMapper {
     public List<SecretSpaceEntity> transformToSecretSpacesEntity(List<SecretSpace> secretSpaces) {
         return secretSpaces
                 .stream()
-                .map(new SecretSpaceMapper()::transform)
+                .map(this::transform)
                 .toList();
     }
 
@@ -38,7 +38,7 @@ public class SecretSpaceMapper {
     public List<SecretSpace> transformToSecretSpaces(List<SecretSpaceEntity> secretSpaceEntities) {
         return secretSpaceEntities
                 .stream()
-                .map(new SecretSpaceMapper()::transform)
+                .map(this::transform)
                 .toList();
     }
 }

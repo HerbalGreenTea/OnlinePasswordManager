@@ -1,9 +1,8 @@
-package com.project.passmanager.main.registration.controllers;
+package com.project.passmanager.main.network.controllers;
 
-import com.project.passmanager.main.registration.models.UserRegistration;
-import com.project.passmanager.main.registration.services.UserRegistrationService;
+import com.project.passmanager.main.domain.models.User;
+import com.project.passmanager.main.network.services.UserRegistrationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,6 @@ public class RegistrationController {
      */
     @GetMapping("/registration")
     public String registration() {
-
         return REGISTRATION_PAGE;
     }
 
@@ -28,9 +26,9 @@ public class RegistrationController {
      * Метод сохранения формы регистрации
      */
     @PostMapping("/registration")
-    public String adduser(UserRegistration userRegistration, Model model) {
+    public String adduser(User user, Model model) {
         try {
-            userRegistrationService.addUser(userRegistration);
+            userRegistrationService.saveUser(user);
             return "redirect:/login";
         } catch (Exception ex) {
             model.addAttribute("message", "UserRegistration exists");

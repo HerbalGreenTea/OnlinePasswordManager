@@ -26,7 +26,7 @@ public class SecretMapper {
     public List<SecretEntity> transformToSecretsEntity(List<Secret> secrets) {
         return secrets
                 .stream()
-                .map(new SecretMapper()::transform)
+                .map(this::transform)
                 .toList();
     }
 
@@ -45,7 +45,7 @@ public class SecretMapper {
     public List<Secret> transformToSecrets(List<SecretEntity> secrets) {
         return secrets
                 .stream()
-                .map(new SecretMapper()::transform)
+                .map(this::transform)
                 .toList();
     }
 }

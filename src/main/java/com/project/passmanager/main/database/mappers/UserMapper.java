@@ -19,7 +19,7 @@ public class UserMapper {
     public List<UserEntity> transformToSecretsEntity(List<User> secrets) {
         return secrets
                 .stream()
-                .map(new UserMapper()::transform)
+                .map(this::transform)
                 .toList();
     }
 
@@ -34,7 +34,7 @@ public class UserMapper {
     public List<User> transformToUsers(List<UserEntity> userEntities) {
         return userEntities
                 .stream()
-                .map(new UserMapper()::transform)
+                .map(this::transform)
                 .toList();
     }
 }
