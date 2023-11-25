@@ -18,6 +18,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 
 	implementation 'org.hibernate:hibernate-core:6.3.1.Final'
 	implementation 'org.hibernate.common:hibernate-commons-annotations:6.0.6.Final'
@@ -28,12 +32,12 @@ dependencies {
 
 
 	annotationProcessor 'org.projectlombok:lombok'
-	compileOnly 'org.projectlombok:lombok'
 
 	implementation 'org.mindrot:jbcrypt:0.4'
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	implementation 'org.apache.commons:commons-lang3:3.13.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
