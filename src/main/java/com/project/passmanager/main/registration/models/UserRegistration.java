@@ -14,9 +14,9 @@ import java.util.Set;
 @Entity
 @Table(name = "my users")
 public class UserRegistration {
+
     @Id
     @GeneratedValue
-
     private Long id;
     private String username;
     private String password;
