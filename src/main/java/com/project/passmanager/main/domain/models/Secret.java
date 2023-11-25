@@ -15,4 +15,5 @@ public class Secret {
     private String login;
     private String password;
     private String note;
+    private String url;
 }
