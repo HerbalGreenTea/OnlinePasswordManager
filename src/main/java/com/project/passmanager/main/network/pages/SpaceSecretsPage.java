@@ -1,6 +1,5 @@
 package com.project.passmanager.main.network.pages;
 
-import com.project.passmanager.main.database.core.InMemoryCacheSecretSpace;
 import com.project.passmanager.main.domain.models.SecretSpace;
 import com.project.passmanager.main.network.services.SecretDetailsService;
 import com.project.passmanager.main.network.services.SpaceSecretsService;
@@ -16,7 +15,7 @@ import org.springframework.ui.Model;
 @RequiredArgsConstructor
 public class SpaceSecretsPage {
     private static final String PAGE_NAME = "secretsListPage";
-    public static String SELECTED_SECRET_SPACE_ID = InMemoryCacheSecretSpace.getIdDefaultSecretSpace();
+    public static String SELECTED_SECRET_SPACE_ID = "0";
 
     private final SpaceSecretsService spaceSecretsService;
     private final SecretDetailsService secretDetailsService;

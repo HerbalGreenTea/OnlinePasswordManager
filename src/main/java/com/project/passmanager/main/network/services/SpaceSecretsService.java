@@ -19,7 +19,7 @@ public class SpaceSecretsService {
     private final ISpaceSecretsRepository spaceSecretsRepository;
 
     public List<SecretSpace> getSecretSpaces() {
-        var spaces = new ArrayList<>(spaceSecretsRepository.getSecretSpaces());
+        var spaces = new ArrayList<>(spaceSecretsRepository.getSecretSpaces("509ec6ee-7e2a-4610-8214-4bc3e2f606b9"));
         spaces.sort(Comparator.comparing(SecretSpace::getName));
         return spaces;
     }

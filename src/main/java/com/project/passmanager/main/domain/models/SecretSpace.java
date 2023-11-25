@@ -10,5 +10,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class SecretSpace {
     private String id;
+    private String f_key;
     private String name;
 }

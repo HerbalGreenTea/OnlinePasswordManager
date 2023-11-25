@@ -8,7 +8,10 @@ import java.util.List;
  * Репозторий для работы с моделью SecretSpace
  * */
 public interface ISpaceSecretsRepository {
-    List<SecretSpace> getSecretSpaces();
+    List<SecretSpace> getSecretSpaces(String userId);
+
+    SecretSpace getEmptySecretSpace(String userId);
+
     void saveSecretSpace(SecretSpace secretSpace);
     void deleteSecretSpace(String secretSpaceId);
 }

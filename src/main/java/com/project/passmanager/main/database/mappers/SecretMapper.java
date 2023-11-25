@@ -2,46 +2,50 @@ package com.project.passmanager.main.database.mappers;
 
 import com.project.passmanager.main.database.models.SecretEntity;
 import com.project.passmanager.main.domain.models.Secret;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * маппинг модели Secret слоев domain и database
- * */
+ */
+@Component
 public class SecretMapper {
-    public static SecretEntity transform(Secret secret) {
+    public SecretEntity transform(Secret secret) {
         return new SecretEntity(
                 secret.getId(),
                 secret.getSecretSpaceId(),
                 secret.getName(),
                 secret.getLogin(),
                 secret.getPassword(),
-                secret.getNote()
+                secret.getNote(),
+                secret.getUrl()
         );
     }
 
-    public static List<SecretEntity> transformToSecretsEntity(List<Secret> secrets) {
+    public List<SecretEntity> transformToSecretsEntity(List<Secret> secrets) {
         return secrets
                 .stream()
-                .map(SecretMapper::transform)
+                .map(this::transform)
                 .toList();
     }
 
-    public static Secret transform(SecretEntity secretEntity) {
+    public Secret transform(SecretEntity secretEntity) {
         return new Secret(
                 secretEntity.getId(),
-                secretEntity.getSecretSpaceId(),
+                secretEntity.getFK_secretSpace(),
                 secretEntity.getName(),
                 secretEntity.getLogin(),
                 secretEntity.getPassword(),
-                secretEntity.getNote()
+                secretEntity.getNote(),
+                secretEntity.getUrl()
         );
     }
 
-    public static List<Secret> transformToSecrets(List<SecretEntity> secrets) {
+    public List<Secret> transformToSecrets(List<SecretEntity> secrets) {
         return secrets
                 .stream()
-                .map(SecretMapper::transform)
+                .map(this::transform)
                 .toList();
     }
 }
